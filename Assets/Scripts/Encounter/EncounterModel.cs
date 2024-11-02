@@ -6,7 +6,7 @@ using Sirenix.OdinInspector.Editor;
 using Skills;
 using UnityEngine;
 
-namespace Encounters
+namespace Encounter
 {
     [CreateAssetMenu(menuName = "Game/Models/Encounter", fileName = "Encounter")]
     public class EncounterModel : ScriptableObject
