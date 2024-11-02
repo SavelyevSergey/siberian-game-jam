@@ -10,35 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 045e53bca2604af28b835668371cc718, type: 3}
-  m_Name: Encounter
+  m_Name: Encounter 1
   m_EditorClassIdentifier: 
-  _id: Test Victory
+  _id: Test Defeat
   _heroEntity: {fileID: 11400000, guid: b962172202fd52b40a054ca7842b169a, type: 2}
   _heroSkillOrder:
-  - Skill: {fileID: 11400000, guid: f4c43318a54f34042a42bb8c61106e93, type: 2}
+  - Skill: {fileID: 11400000, guid: 843d3767647d76e479a615ac10227fa9, type: 2}
     Target: Enemy A
-  - Skill: {fileID: 11400000, guid: f4c43318a54f34042a42bb8c61106e93, type: 2}
+  - Skill: {fileID: 11400000, guid: 843d3767647d76e479a615ac10227fa9, type: 2}
     Target: Enemy A
   _playerSkills:
   - {fileID: 11400000, guid: 4becfa350f4952741ac8430d86efa4a6, type: 2}
-  - {fileID: 11400000, guid: c7ecb75dd0951e74086a369c389b068b, type: 2}
+  - {fileID: 11400000, guid: 4becfa350f4952741ac8430d86efa4a6, type: 2}
   _enemies:
   - Id: Enemy A
     Model: {fileID: 11400000, guid: 8d7445abca9bf1d459f5fd106eb9a726, type: 2}
     SkillOrder:
-    - {fileID: 11400000, guid: 843d3767647d76e479a615ac10227fa9, type: 2}
+    - {fileID: 11400000, guid: f4c43318a54f34042a42bb8c61106e93, type: 2}
     - {fileID: 11400000, guid: f4c43318a54f34042a42bb8c61106e93, type: 2}
   _turnOrder:
-  - _model:
-      Id: Hero
-      Model: {fileID: 0}
-      SkillOrder: []
   - _model:
       Id: Enemy A
       Model: {fileID: 11400000, guid: 8d7445abca9bf1d459f5fd106eb9a726, type: 2}
       SkillOrder:
-      - {fileID: 11400000, guid: 843d3767647d76e479a615ac10227fa9, type: 2}
       - {fileID: 11400000, guid: f4c43318a54f34042a42bb8c61106e93, type: 2}
+      - {fileID: 11400000, guid: f4c43318a54f34042a42bb8c61106e93, type: 2}
+  - _model:
+      Id: Hero
+      Model: {fileID: 0}
+      SkillOrder: []
   - _model:
       Id: Player
       Model: {fileID: 0}

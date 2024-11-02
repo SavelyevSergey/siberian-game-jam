@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Entities;
 using Sirenix.OdinInspector;
 using Sirenix.OdinInspector.Editor;
 using Skills;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Encounter
@@ -11,8 +13,11 @@ namespace Encounter
     [CreateAssetMenu(menuName = "Game/Models/Encounter", fileName = "Encounter")]
     public class EncounterModel : ScriptableObject
     {
+        [Title("Encounter")]
+        [SerializeField] private string _id;
         [Title("Hero")]
-        [SerializeField] private List<SkillModel> _heroSkillOrder;
+        [SerializeField] private EntityModel _heroEntity;
+        [SerializeField] private List<SkillForEncounterModel> _heroSkillOrder;
         [Title("Player")]
         [SerializeField] private List<SkillModel> _playerSkills;
         [Title("Enemies")]
@@ -21,6 +26,13 @@ namespace Encounter
         [Title(" ")]
         [ListDrawerSettings(HideAddButton = true, HideRemoveButton = true)]
         [SerializeField] private List<EntityPointer> _turnOrder;
+
+        public string Id => _id;
+        public EntityModel Hero => _heroEntity;
+        public List<SkillForEncounterModel> HeroSkillOrder => _heroSkillOrder;
+        public List<SkillModel> PlayerSkills => _playerSkills;
+        public List<EntityForEncounterModel> Enemies => _enemies;
+        public List<string> StepOrder => _turnOrder.Select(t => t.Id).ToList();
 
 #if UNITY_EDITOR
         private void Reset()
@@ -101,9 +113,33 @@ namespace Encounter
     }
 
     [Serializable]
+    public class SkillForEncounterModel
+    {
+        public SkillModel Skill;
+        //[ValueDropdown("GetTargets")]
+        public string Target = "Hero";
+
+        public SkillForEncounterModel(SkillModel skill)
+        {
+            Skill = skill;
+        }
+        
+        #if UNITY_EDITOR
+        private ValueDropdownList<string> GetTargets(EncounterModel root)
+        {
+            var res = new ValueDropdownList<string>() {"Hero"};
+            foreach (var enemy in root.Enemies)
+                res.Add(enemy.Id);
+            return res;
+        }
+        #endif
+    }
+
+    [Serializable]
     [InlineProperty, HideLabel]
     public class EntityPointer : IEquatable<EntityPointer>
     {
+        [SerializeField, HideInInspector]
         private EntityForEncounterModel _model;
 
         [HideLabel]
